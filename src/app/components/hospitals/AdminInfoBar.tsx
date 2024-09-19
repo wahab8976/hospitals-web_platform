@@ -1,13 +1,12 @@
 "use client";
 import React from "react";
 import { Badge, Button, Avatar } from "@nextui-org/react";
-import { NotificationIcon } from "@/app/components/hospitals/NotificationIcon";
+import { NotificationIcon } from "@/app/components/hospitals/NotificationIcon.tsx";
 
 const AdminInfoBar = () => {
   return (
-    <div className="w-full h-14 bg-blue-50 flex justify-around items-center">
-      <h1>Hospital Name</h1>
-      <div className="flex justify-center items-center gap-4">
+    <div className="fixed top-0 bg-transparent right-0 w-[200px] h-14 bg-blue-50 z-10">
+      <div className="flex justify-center items-center gap-3 p-4 ">
         <Badge content="9+" shape="circle" color="primary">
           <Button
             radius="full"

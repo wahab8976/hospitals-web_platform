@@ -1,11 +1,25 @@
 "use client";
-export const NotificationIcon = ({ size, height, width, ...props }) => {
+import React from "react";
+
+interface NotificationIconProps {
+  size?: number;
+  height?: number;
+  width?: number;
+  [key: string]: any;
+}
+
+export const NotificationIcon: React.FC<NotificationIconProps> = ({
+  size = 24,
+  height,
+  width,
+  ...props
+}) => {
   return (
     <svg
       fill="none"
-      height={size || height || 24}
+      height={height || size}
       viewBox="0 0 24 24"
-      width={size || width || 24}
+      width={width || size}
       xmlns="http://www.w3.org/2000/svg"
       {...props}
     >

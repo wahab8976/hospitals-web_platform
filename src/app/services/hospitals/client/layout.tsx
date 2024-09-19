@@ -1,5 +1,5 @@
 import Navbar from "@/app/components/hospitals/Navbar";
-import AdminInfoBar from "@/app/components/hospitals/AdminInfoBar";
+import AdminInfoBar from "@/app/components/hospitals/AdminInfoBar.tsx";
 export default function Layout({
   children,
 }: Readonly<{
@@ -19,7 +19,7 @@ export default function Layout({
           <div className="flex flex-col w-5/6">
             {/* AdminInfoBar and Page content in a column */}
             {/* Top section (AdminInfoBar) */}
-            <div className="w-full">
+            <div className="flex justify-end">
               <AdminInfoBar />
             </div>
             {/* Bottom section (Page content under AdminInfoBar) */}

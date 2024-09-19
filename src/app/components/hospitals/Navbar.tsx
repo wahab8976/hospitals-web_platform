@@ -9,10 +9,14 @@ import medicineIcon from "@/app/assets/icons/medicineIcon.svg";
 import logoutIcon from "@/app/assets/icons/logoutIcon.svg";
 import appointmentIcon from "@/app/assets/icons/appointmentIcon.svg";
 import { useRouter } from "next/navigation";
-
+import { useEffect } from "react";
 const Navbar = () => {
   const [selected, setSelected] = useState(1);
   const router = useRouter();
+  useEffect(() => {
+    setSelected(1);
+    router.push(`${process.env.NEXT_PUBLIC_BASE_URL}/3224/dashboard`);
+  }, []);
 
   const handlePageNavigation = (clickedTab: number) => {
     setSelected(clickedTab);
