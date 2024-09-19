@@ -7,7 +7,7 @@ export const metadata: Metadata = {
 };
 
 const page = () => {
-  return <div>This is hospital</div>;
+  return <div>This is Dashboard Page</div>;
 };
 
 export default page;
