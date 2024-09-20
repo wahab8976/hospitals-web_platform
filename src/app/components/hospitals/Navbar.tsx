@@ -8,19 +8,46 @@ import messageIcon from "@/app/assets/icons/messageIcon.svg";
 import medicineIcon from "@/app/assets/icons/medicineIcon.svg";
 import logoutIcon from "@/app/assets/icons/logoutIcon.svg";
 import appointmentIcon from "@/app/assets/icons/appointmentIcon.svg";
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 import { useEffect } from "react";
+
 const Navbar = () => {
-  const [selected, setSelected] = useState(1);
+  const [selected, setSelected] = useState<Number | null>(null);
   const router = useRouter();
+  const pathname = usePathname();
+
   useEffect(() => {
-    setSelected(1);
-    router.push(`${process.env.NEXT_PUBLIC_BASE_URL}/3224/dashboard`);
-  }, []);
+    const requestedPage = pathname.split("/").filter(Boolean).pop();
+    switch (requestedPage) {
+      case "dashboard":
+        setSelected(1);
+        break;
+      case "appointments":
+        setSelected(2);
+        break;
+      case "patients":
+        setSelected(3);
+        break;
+      case "doctors":
+        setSelected(4);
+        break;
+      case "messages":
+        setSelected(5);
+        break;
+      case "medicines":
+        setSelected(6);
+        break;
+      case "settings":
+        setSelected(7);
+        break;
+      default:
+        setSelected(selected); // Default to dashboard if no match
+        break;
+    }
+  }, [pathname]);
 
   const handlePageNavigation = (clickedTab: number) => {
     setSelected(clickedTab);
-    // 3224 will be replaced by Object ID of hospital from DataBase in Future
     switch (clickedTab) {
       case 1:
         router.push(`${process.env.NEXT_PUBLIC_BASE_URL}/3224/dashboard`);
@@ -41,7 +68,7 @@ const Navbar = () => {
         router.push(`${process.env.NEXT_PUBLIC_BASE_URL}/3224/medicines`);
         break;
       case 7:
-        router.push(`${process.env.NEXT_PUBLIC_BASE_URL}/3224/settings  `);
+        router.push(`${process.env.NEXT_PUBLIC_BASE_URL}/3224/settings`);
         break;
       default:
         break;
@@ -161,7 +188,6 @@ const Navbar = () => {
             src={medicineIcon}
             alt="Medicine"
             height={25}
-            width={25}
             className="icon"
           />
           <span

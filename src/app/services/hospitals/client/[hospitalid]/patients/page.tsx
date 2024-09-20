@@ -1,9 +1,15 @@
+"use client";
 import React from "react";
 import Image from "next/image";
 import addIcon from "@/app/assets/icons/addIcon.svg";
 import chatIcon from "@/app/assets/icons/chatIcon.svg";
-import infoIcon from "@/app/assets/icons/infoIcon.svg";
-const page = () => {
+import detailsIcon from "@/app/assets/icons/details.svg";
+import { useRouter } from "next/navigation";
+
+const Page = () => {
+  const router = useRouter();
+
+  // Dummy array of patients
   const patients = [
     {
       patientId: "P001",
@@ -21,16 +27,16 @@ const page = () => {
       phone: "+0987654321",
       email: "janesmith@example.com",
     },
-    // Add more patient data here
   ];
+
   return (
-    <div className="flex flex-col justify-center ">
+    <div className="overflow-hidden flex flex-col justify-center ">
       <h1 className="text-xl">Patients</h1>
-      <div className="my-5 rounded-lg w-[93%] bg-white h-[85vh] shadow-xl shadow-gray-300">
+      <div className="my-5 overflow-hidden rounded-lg w-[93%] bg-white h-[85vh] shadow-xl shadow-gray-300">
         <div className="flex justify-between items-center mt-2 px-3">
           <h2 className="font-semibold">Patient Info</h2>
-          <button className="flex justify-center gap-1 bg-blue-500 hover:bg-blue-600 text-white font-bold px-2  items-center rounded-md">
-            <Image height={35} src={addIcon} alt="add a new Patient" />
+          <button className="flex justify-center gap-1 bg-blue-500 hover:bg-blue-600 text-white font-bold px-2 items-center rounded-md">
+            <Image height={35} src={addIcon} alt="Add a new Patient" />
             <span className="font-semibold">New Patient</span>
           </button>
         </div>
@@ -87,32 +93,24 @@ const page = () => {
                     {patient.email}
                   </td>
                   <td className="py-3 px-6 text-sm text-gray-700 flex space-x-2">
-                    {/* <button className="bg-blue-500 text-white py-1 px-3 rounded-lg hover:bg-blue-600">
-                      Edit
-                    </button> */}
-
-                    <button>
-                      <Image height={35} src={chatIcon} alt="" />
-                    </button>
-                    <button className="btn btn-square btn-outline">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        className="h-6 w-6"
-                        fill="#"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
+                    <div className="flex items-center gap-2">
+                      <button>
+                        <Image height={35} src={chatIcon} alt="Patient Chat" />
+                      </button>
+                      <button
+                        onClick={() => {
+                          router.push(
+                            `${process.env.NEXT_PUBLIC_BASE_URL}/3224/patients/${patient.patientId}`
+                          );
+                        }}
                       >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth="2"
-                          d="M6 18L18 6M6 6l12 12"
+                        <Image
+                          height={30}
+                          src={detailsIcon}
+                          alt="Patient Details"
                         />
-                      </svg>
-                    </button>
-                    <button>
-                      <Image height={35} src={infoIcon} alt="" />
-                    </button>
+                      </button>
+                    </div>
                   </td>
                 </tr>
               ))}
@@ -124,4 +122,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;
