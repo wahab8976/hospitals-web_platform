@@ -9,43 +9,40 @@ import { useRouter } from "next/navigation";
 const Page = () => {
   const router = useRouter();
 
-  // Dummy array of patients
-  const patients = [
+  // Dummy array of doctors
+  const doctors = [
     {
-      patientId: "P001",
-      name: "John Doe",
-      age: 30,
-      gender: "Male",
+      doctorId: "D001",
+      name: "Dr. Emily Clark",
+      specialization: "Cardiologist",
       phone: "+1234567890",
-      email: "johndoe@example.com",
+      email: "emilyclark@example.com",
     },
     {
-      patientId: "P002",
-      name: "Jane Smith",
-      age: 25,
-      gender: "Female",
+      doctorId: "D002",
+      name: "Dr. Alex Brown",
+      specialization: "Neurologist",
       phone: "+0987654321",
-      email: "janesmith@example.com",
+      email: "alexbrown@example.com",
     },
     {
-      patientId: "P003",
-      name: "Habeeb Ullah",
-      age: 20,
-      gender: "Male",
+      doctorId: "D003",
+      name: "Dr. Sarah Lee",
+      specialization: "Pediatrician",
       phone: "+9234567890",
-      email: "BibUllah@example.com",
+      email: "sarahlee@example.com",
     },
   ];
 
   return (
-    <div className="overflow-hidden flex flex-col justify-center ">
-      <h1 className="text-xl">Patients</h1>
+    <div className="overflow-hidden flex flex-col justify-center">
+      <h1 className="text-xl">Doctors</h1>
       <div className="my-5 overflow-hidden rounded-lg w-[93%] bg-white h-[85vh] shadow-xl shadow-gray-300">
         <div className="flex justify-between items-center mt-2 px-3">
-          <h2 className="font-semibold">Patient Info</h2>
+          <h2 className="font-semibold">Doctor Info</h2>
           <button className="flex justify-center gap-1 bg-blue-500 hover:bg-blue-600 text-white font-bold px-2 items-center rounded-md">
-            <Image height={35} src={addIcon} alt="Add a new Patient" />
-            <span className="font-semibold">New Patient</span>
+            <Image height={35} src={addIcon} alt="Add a new Doctor" />
+            <span className="font-semibold">New Doctor</span>
           </button>
         </div>
         <hr className="mt-2" />
@@ -54,16 +51,13 @@ const Page = () => {
             <thead>
               <tr className="bg-blue-100">
                 <th className="py-3 px-6 text-left font-semibold text-sm text-gray-700">
-                  Patient ID
+                  Doctor ID
                 </th>
                 <th className="py-3 px-6 text-left font-semibold text-sm text-gray-700">
                   Name
                 </th>
                 <th className="py-3 px-6 text-left font-semibold text-sm text-gray-700">
-                  Age
-                </th>
-                <th className="py-3 px-6 text-left font-semibold text-sm text-gray-700">
-                  Gender
+                  Specialization
                 </th>
                 <th className="py-3 px-6 text-left font-semibold text-sm text-gray-700">
                   Phone
@@ -77,45 +71,42 @@ const Page = () => {
               </tr>
             </thead>
             <tbody>
-              {patients.map((patient, index) => (
+              {doctors.map((doctor, index) => (
                 <tr
-                  key={patient.patientId}
+                  key={doctor.doctorId}
                   className={`${index % 2 === 0 ? "bg-gray-50" : "bg-white"}`}
                 >
                   <td className="py-3 px-6 text-sm text-gray-700">
-                    {patient.patientId}
+                    {doctor.doctorId}
                   </td>
                   <td className="py-3 px-6 text-sm text-gray-700">
-                    {patient.name}
+                    {doctor.name}
                   </td>
                   <td className="py-3 px-6 text-sm text-gray-700">
-                    {patient.age}
+                    {doctor.specialization}
                   </td>
                   <td className="py-3 px-6 text-sm text-gray-700">
-                    {patient.gender}
+                    {doctor.phone}
                   </td>
                   <td className="py-3 px-6 text-sm text-gray-700">
-                    {patient.phone}
-                  </td>
-                  <td className="py-3 px-6 text-sm text-gray-700">
-                    {patient.email}
+                    {doctor.email}
                   </td>
                   <td className="py-3 px-6 text-sm text-gray-700 flex space-x-2">
                     <div className="flex items-center gap-2">
                       <button>
-                        <Image height={35} src={chatIcon} alt="Patient Chat" />
+                        <Image height={35} src={chatIcon} alt="Doctor Chat" />
                       </button>
                       <button
                         onClick={() => {
                           router.push(
-                            `${process.env.NEXT_PUBLIC_BASE_URL}/3224/patients/${patient.patientId}`
+                            `${process.env.NEXT_PUBLIC_BASE_URL}/3224/doctors/${doctor.doctorId}`
                           );
                         }}
                       >
                         <Image
                           height={30}
                           src={detailsIcon}
-                          alt="Patient Details"
+                          alt="Doctor Details"
                         />
                       </button>
                     </div>
